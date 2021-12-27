@@ -1,51 +1,72 @@
 const calculator = {
 
-    displayValue: document.querySelector('.mainRow'),
+    displayValue: document.querySelector('.mainRow'), // shorthand
 
-    stack: 0,
+    currentValue: function () {
+        return parseInt(this.displayValue.innerText)
+    },
 
-    lastOperation: '',
 
-    mathAllow: true,
+    storedValue: false,
 
-    temp: 0,
+    //Triggers
 
-    '+': function () {
+    mathAllow: true, // disable math button functions
+
+    lastOperation: false, // store last operation for chaining
+
+    showResult: true, // show value after math is done
+
+    //-------------------------
+
+    math: function (val) {
         if (this.mathAllow) {
-            let temp = this.displayValue.innerText
-            this.clear();
-            this.stack += parseInt(temp);
-            this.clear();
-            this.mathAllow = false;
-            this.lastOperation = '+'
+            if (!this.storedValue && !this.lastOperation) {
+                this.storedValue = this.currentValue()
+                
+            } else {
+                switch (this.lastOperation) {
+                    case '+':
+                        this.storedValue += this.currentValue()
+                        break;
+                    case '-':
+                        this.storedValue -= this.currentValue()
+                        break;
+                    case '*':
+                        this.storedValue *= this.currentValue()
+                        break;
+                    case '/':
+                        this.storedValue /= this.currentValue()
+                        break;
+                }
+            }
+            this.displayValue.innerText = this.storedValue
+            this.showResult = true
+            this.mathAllow = false
         }
+        this.lastOperation = val
     },
-
-
+    //---------------------------------------------
     setValue: function (val) {
-        this.displayValue.innerText += val;
         this.mathAllow = true;
+        if (this.showResult) {
+            this.displayValue.innerText = ''
+        }
+        this.showResult = false
+        this.displayValue.innerText += val;
     },
 
+    //-----------------------------
     clear: function (full = false) {
-        this.displayValue.innerText = '';
-        if (full) {
-            this.stack = 0;
-        }
+        this.displayValue.innerText = 0;
+        this.storedValue = false
+        this.lastOperation = false
     },
 
     delete: function () {
         this.displayValue.innerText = this.displayValue.innerText.slice(0, -1);
     },
 
-    equals: function () {
-        switch(this.lastOperation){
-            case '+': this['+']();
-            break;
-        }
-        this.displayValue.innerText = this.stack
-        this.mathAllow = true
-    }
 }
 
 //Events binding
@@ -82,19 +103,32 @@ document.querySelector('.n0').onclick = function () {
 //document.querySelector.('..').onclick(operation.setValue())
 
 document.querySelector('.sum').onclick = function () {
-    calculator['+']()
+    calculator.math('+')
 }
-//document.querySelector('.division').onclick = function(){calculator.operation('/')}
-//document.querySelector('.min').onclick = function(){calculator.operation('-')}
-//document.querySelector('.multi').onclick = function(){calculator.operation('*')}
+document.querySelector('.division').onclick = function () {
+    calculator.math('/')
+}
+document.querySelector('.min').onclick = function () {
+    calculator.math('-')
+}
+document.querySelector('.multi').onclick = function () {
+    calculator.math('*')
+}
 document.querySelector('.equals').onclick = function () {
-    calculator.equals()
+    calculator.math('=')
 }
 
-function test() {
-    return Array.from(calculator.displayValue.innerText);
-}
-
-let numTest = test()
-
-let arr = [986, '*', 585, '-', 955]
+//switch (val) {
+//    case '+':
+//        this.storedValue += this.currentValue()
+//        break;
+//    case '-':
+//        this.storedValue -= this.currentValue()
+//        break;
+//    case '*':
+//        this.storedValue *= this.currentValue()
+//        break;
+//    case '/':
+//        this.storedValue /= this.currentValue()
+//        break;
+//}
