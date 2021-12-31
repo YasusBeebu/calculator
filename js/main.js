@@ -1,29 +1,30 @@
 const calculator = {
+    // shorthands
 
-    displayValue: document.querySelector('.mainRow'), // shorthand
+    displayValue: document.querySelector('.mainRow'), 
 
     currentValue: function () {
         return parseInt(this.displayValue.innerText)
     },
 
-
-    storedValue: false,
-
     //Triggers
 
-    mathAllow: true, // disable math button functions
+    mathAllow: true, // disable math buttons like =-*/
 
-    lastOperation: false, // store last operation for chaining
+    lastOperation: false, // store last operation for chaining purpose
 
-    showResult: true, // show value after math is done
+    showResult: true, // Shows result on display as temporary value, any input will override it
+    
 
-    //-------------------------
+    //Logic
+
+    storedValue: false, // Store values to operate
 
     math: function (val) {
         if (this.mathAllow) {
             if (!this.storedValue && !this.lastOperation) {
                 this.storedValue = this.currentValue()
-                
+
             } else {
                 switch (this.lastOperation) {
                     case '+':
@@ -46,21 +47,26 @@ const calculator = {
         }
         this.lastOperation = val
     },
-    //---------------------------------------------
+
+    //Input edit
+
     setValue: function (val) {
+        if(val === '.'){
+            this.floatMode
+        }
         this.mathAllow = true;
-        if (this.showResult) {
+        if (this.showResult) { // if value on the display is temp erase it
             this.displayValue.innerText = ''
         }
         this.showResult = false
         this.displayValue.innerText += val;
     },
 
-    //-----------------------------
     clear: function (full = false) {
         this.displayValue.innerText = 0;
-        this.storedValue = false
-        this.lastOperation = false
+        this.storedValue = false;
+        this.lastOperation = false;
+        this.showResult = true;
     },
 
     delete: function () {
@@ -69,7 +75,7 @@ const calculator = {
 
 }
 
-//Events binding
+//Html Events binding
 document.querySelector('.n7').onclick = function () {
     calculator.setValue(7)
 }
@@ -100,7 +106,9 @@ document.querySelector('.n3').onclick = function () {
 document.querySelector('.n0').onclick = function () {
     calculator.setValue(0)
 }
-//document.querySelector.('..').onclick(operation.setValue())
+document.querySelector('.dot').onclick = function () {
+    calculator.setValue(".")
+}
 
 document.querySelector('.sum').onclick = function () {
     calculator.math('+')
