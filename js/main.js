@@ -16,7 +16,7 @@ const calculator = {
     showResult: true, // Shows result on display as temporary value, any input will override it
     
 
-    //Logic
+    //Logicsss
 
     storedValue: false, // Store values to operate
 
