@@ -1,9 +1,12 @@
 const calculator = {
     // shorthands
 
-    displayValue: document.querySelector('.mainRow'), 
+    displayValue: document.querySelector('.mainRow'),
 
     currentValue: function () {
+        if (this.floatMode) {
+            return parseFloat(this.displayValue.innerText)
+        }
         return parseInt(this.displayValue.innerText)
     },
 
@@ -14,13 +17,18 @@ const calculator = {
     lastOperation: false, // store last operation for chaining purpose
 
     showResult: true, // Shows result on display as temporary value, any input will override it
-    
 
-    //Logicsss
+    floatMode: false, // Convert string into float or number
 
-    storedValue: false, // Store values to operate
+    floatDot: true, // Enable .
+
+
+    //Logic
+
+    storedValue: false, // Stack value for math
 
     math: function (val) {
+        this.floatDot = true
         if (this.mathAllow) {
             if (!this.storedValue && !this.lastOperation) {
                 this.storedValue = this.currentValue()
@@ -49,11 +57,15 @@ const calculator = {
     },
 
     //Input edit
+    float: function () {
+        if (this.floatDot) {
+            this.displayValue.innerText += '.';
+            this.floatDot = false
+        }
+        this.floatMode = true
+    },
 
     setValue: function (val) {
-        if(val === '.'){
-            this.floatMode
-        }
         this.mathAllow = true;
         if (this.showResult) { // if value on the display is temp erase it
             this.displayValue.innerText = ''
@@ -67,9 +79,14 @@ const calculator = {
         this.storedValue = false;
         this.lastOperation = false;
         this.showResult = true;
+        this.floatDot = true;
+        this.floatMode = false;
     },
 
     delete: function () {
+        if (this.displayValue.innerText.slice(-1) === '.') {
+            this.floatDot = true
+        }
         this.displayValue.innerText = this.displayValue.innerText.slice(0, -1);
     },
 
@@ -107,7 +124,7 @@ document.querySelector('.n0').onclick = function () {
     calculator.setValue(0)
 }
 document.querySelector('.dot').onclick = function () {
-    calculator.setValue(".")
+    calculator.float()
 }
 
 document.querySelector('.sum').onclick = function () {
@@ -126,17 +143,10 @@ document.querySelector('.equals').onclick = function () {
     calculator.math('=')
 }
 
-//switch (val) {
-//    case '+':
-//        this.storedValue += this.currentValue()
-//        break;
-//    case '-':
-//        this.storedValue -= this.currentValue()
-//        break;
-//    case '*':
-//        this.storedValue *= this.currentValue()
-//        break;
-//    case '/':
-//        this.storedValue /= this.currentValue()
-//        break;
-//}
+//KeyBindings
+
+window.addEventListener('keyup', function (event) {
+    if (event.code === 'Numpad1') {
+        alert('enter was pressed!');
+    }
+});
