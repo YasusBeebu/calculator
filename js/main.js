@@ -74,7 +74,7 @@ const calculator = {
         this.displayValue.innerText += val;
     },
 
-    clear: function (full = false) {
+    clear: function () {
         this.displayValue.innerText = 0;
         this.storedValue = false;
         this.lastOperation = false;
@@ -146,7 +146,71 @@ document.querySelector('.equals').onclick = function () {
 //KeyBindings
 
 window.addEventListener('keyup', function (event) {
-    if (event.code === 'Numpad1') {
-        alert('enter was pressed!');
+    switch (event.code) {
+        case 'Numpad1':
+        case 'Digit1':
+            calculator.setValue(1)
+            break;
+        case 'Numpad2':
+        case 'Digit2':
+            calculator.setValue(2)
+            break;
+        case 'Numpad3':
+        case 'Digit3':
+            calculator.setValue(3)
+            break;
+        case 'Numpad4':
+        case 'Digit4':
+            calculator.setValue(4)
+            break;
+        case 'Numpad5':
+        case 'Digit5':
+            calculator.setValue(5)
+            break;
+        case 'Numpad6':
+        case 'Digit6':
+            calculator.setValue(6)
+            break;
+        case 'Numpad7':
+        case 'Digit7':
+            calculator.setValue(7)
+            break;
+        case 'Numpad8':
+        case 'Digit8':
+            calculator.setValue(8)
+            break;
+        case 'Numpad9':
+        case 'Digit9':
+            calculator.setValue(9)
+            break;
+        case 'Numpad0':
+        case 'Digit0':
+            calculator.setValue(0)
+            break;
+        case 'NumpadAdd':
+        case 'Equal':
+            calculator.math('+')
+            break;
+        case 'NumpadSubtract':
+        case 'Minus':
+            calculator.math('-')
+            break;
+        case 'NumpadDivide':
+            calculator.math('/')
+            break;
+        case 'NumpadMultiply':
+            calculator.math('*')
+            break;
+        case 'NumpadDecimal':
+            calculator.float()
+            break;
+        case 'NumpadEnter':
+        case 'Enter':
+            calculator.math('=')
+            break;
+        case 'Backspace':
+            calculator.delete()
+            break;
     }
+
 });
