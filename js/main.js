@@ -92,7 +92,7 @@ const calculator = {
 
 }
 
-//Html Events binding
+//Html Events binding - input
 document.querySelector('.n7').onclick = function () {
     calculator.setValue(7)
 }
@@ -126,6 +126,13 @@ document.querySelector('.n0').onclick = function () {
 document.querySelector('.dot').onclick = function () {
     calculator.float()
 }
+document.querySelector('.clearButton').onclick = function () {
+    calculator.clear()
+}
+document.querySelector('.deleteButton').onclick = function () {
+    calculator.delete()
+}
+//Html Events binding - math
 
 document.querySelector('.sum').onclick = function () {
     calculator.math('+')
