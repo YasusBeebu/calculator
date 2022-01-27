@@ -1,19 +1,23 @@
 body {
     margin: auto;
-    background: palegoldenrod;
+    background: #555;
     width: 200vh;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Consolas';
 }
 
 .mainCont {
     display: flex;
     flex-direction: column;
-    width: 70vh;
+    width: 79vh;
     height: 92vh;
-    border: 0.5em solid black;
+    background: #333;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 25px 25px 75px rgb(0 0 0 / 25%), 25px 25px 75px rgb(0 0 0 / 50%), 10px 10px 70px rgb(0 0 0 / 25%), inset -5px -5px 15px rgb(0 0 0 / 50%);
+    padding: 6px;
 }
 
 .mainFrame {
@@ -27,22 +31,32 @@ body {
     flex-direction: column;
     width: 100%;
     height: 20vh;
+    background: #a7af7c;
+    border-radius: 3vh;
+    margin-bottom: 2vh;
+    box-shadow: inset 0px 0px 10px 4px
 }
 
 .subRow {
     display: flex;
     align-items: center;
-    background-color: yellow;
+    background-color: rgb(57, 57, 57);
     height: 30%;
+    color: #333;
+    background-color: transparent;
+    padding: 0px 0px 0px 15px;
 }
 
 .mainRow {
     font-size: 10vh;
-    background-color: green;
+    background-color: rgb(57, 57, 57);
     height: 70%;
     display: flex;
     justify-content: right;
     align-items: flex-end;
+    color: #333;
+    background-color: transparent;
+    padding: 0px 15px 0px 0px;
 }
 
 .buttonsFrame {
@@ -54,7 +68,7 @@ body {
 
 .deleteButtons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -66,19 +80,36 @@ body {
 }
 
 .button {
+    margin: 1vh;
+    border-radius: 4vh;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 17vh;
-    height: 14vh;
+    height: 11vh;
+    background: linear-gradient(180deg, #2f2f2f, #3f3f3f);
+    color: rgb(187, 187, 187);
+    font-size: 4vh;
+    font-family: 'Consolas';
+    border: 1px solid #111;
+    box-shadow: inset -3px 3px 12px -4px rgb(0 0 0);
 }
 
-.clearButton {
-    background-color: red;
-    width: 100%;
+
+.removeButtons {
+    width: 35vh;
+    background-color: rgb(162, 122, 90);
+    border-radius: 20px;
+    margin: 3px 5px 20px 5px;
 }
 
-.deleteButton {
-    background-color: blue;
+.button p {
+    display: flex;
+    background: linear-gradient(53deg, #2D2D2D, #3D3D3D);
     width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    position: relative;
 }

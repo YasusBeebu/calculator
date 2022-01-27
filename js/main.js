@@ -81,7 +81,7 @@ const calculator = {
         this.showResult = true;
         this.floatDot = true;
         this.floatMode = false;
-        this.mathAllow = true; 
+        this.mathAllow = true;
     },
 
     delete: function () {
