@@ -95,7 +95,6 @@ const calculator = {
 }
 
 // Event Bindings
-const buttons = Array.from(document.querySelectorAll('.button'))
 
 const elementsArr = [
     '.deleteButton',
