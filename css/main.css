@@ -113,3 +113,7 @@ body {
     border-radius: 20px;
     position: relative;
 }
+
+.test {
+    background: linear-gradient(67deg, #2D2D2D, #3D3D3D);
+}

@@ -1,3 +1,4 @@
+"Use Strict"
 const calculator = {
     // shorthands
 
@@ -16,11 +17,11 @@ const calculator = {
 
     lastOperation: false, // store last operation for chaining purpose
 
-    showResult: true, // Shows result on display as temporary value, any input will override it
+    showResult: true, // Shows result on the display as temporary value, any input will override it
 
     floatMode: false, // Convert string into float or number
 
-    floatDot: true, // Enable .
+    floatDot: true, // Enable '.'
 
 
     //Logic
@@ -93,70 +94,69 @@ const calculator = {
 
 }
 
-//Html Events binding - input
-document.querySelector('.n7').onclick = function () {
-    calculator.setValue(7)
-}
-document.querySelector('.n8').onclick = function () {
-    calculator.setValue(8)
-}
-document.querySelector('.n9').onclick = function () {
-    calculator.setValue(9)
-}
-document.querySelector('.n4').onclick = function () {
-    calculator.setValue(4)
-}
-document.querySelector('.n5').onclick = function () {
-    calculator.setValue(5)
-}
-document.querySelector('.n6').onclick = function () {
-    calculator.setValue(6)
-}
-document.querySelector('.n1').onclick = function () {
-    calculator.setValue(1)
-}
-document.querySelector('.n2').onclick = function () {
-    calculator.setValue(2)
-}
-document.querySelector('.n3').onclick = function () {
-    calculator.setValue(3)
-}
-document.querySelector('.n0').onclick = function () {
-    calculator.setValue(0)
-}
-document.querySelector('.dot').onclick = function () {
-    calculator.float()
-}
-document.querySelector('.clearButton').onclick = function () {
-    calculator.clear()
-}
-document.querySelector('.deleteButton').onclick = function () {
-    calculator.delete()
-}
-//Html Events binding - math
+// Event Bindings
+const elementsArr = [
+    '.deleteButton', 
+    '.clearButton', 
+    '.division',
+    '.equals',
+    '.multi',
+    '.min',
+    '.sum',
+    '.dot',
+    '.n9',
+    '.n8',
+    '.n7',
+    '.n6',
+    '.n5',
+    '.n4',
+    '.n3',
+    '.n2',
+    '.n1',
+    '.n0'
+]
 
-document.querySelector('.sum').onclick = function () {
-    calculator.math('+')
-}
-document.querySelector('.division').onclick = function () {
-    calculator.math('/')
-}
-document.querySelector('.min').onclick = function () {
-    calculator.math('-')
-}
-document.querySelector('.multi').onclick = function () {
-    calculator.math('*')
-}
-document.querySelector('.equals').onclick = function () {
-    calculator.math('=')
+function getElement(el_class) {
+    return document.querySelector(el_class)
 }
 
-//KeyBindings
+function clickAnimation() {
+    this.classList.add('test');
+    setTimeout(() => (this.classList.remove('test')), 150);
+}
 
-window.addEventListener('keyup', function (event) {
+function bindOnClick(el_class) {
+    getElement(el_class).addEventListener('click', clickAnimation)
+}
+
+elementsArr.forEach(el => (bindOnClick(el, clickAnimation)))
+
+//getElement('.n0').addEventListener('click', () => (calculator.setValue(0)));
+//getElement('.n1').addEventListener('click', () => (calculator.setValue(1)))
+//getElement('.n2').addEventListener('click', () => (calculator.setValue(2)))
+//getElement('.n3').addEventListener('click', () => (calculator.setValue(3)))
+//getElement('.n4').addEventListener('click', () => (calculator.setValue(4)))
+//getElement('.n5').addEventListener('click', () => (calculator.setValue(5)))
+//getElement('.n6').addEventListener('click', () => (calculator.setValue(6)))
+//getElement('.n7').addEventListener('click', () => (calculator.setValue(7)))
+//getElement('.n8').addEventListener('click', () => (calculator.setValue(8)))
+//getElement('.n9').addEventListener('click', () => (calculator.setValue(9)))
+//getElement('.dot').addEventListener('click', () => (calculator.float()))
+//getElement('.sum').addEventListener('click', () => (calculator.math('+')))
+//getElement('.min').addEventListener('click', () => (calculator.math('-')))
+//getElement('.multi').addEventListener('click', () => (calculator.math('*')))
+//getElement('.division').addEventListener('click', () => (calculator.math('/')))
+//getElement('.equals').addEventListener('click', () => (calculator.math('=')))
+//getElement('.clearButton').addEventListener('click', () => (calculator.clear()))
+//getElement('.deleteButton').addEventListener('click', () => (calculator.delete()))
+
+//Key Bindings
+
+window.addEventListener('keydown', function (event) {
     switch (event.code) {
         case 'Numpad1':
         case 'Digit1':
+            bindOnClick('.n1', clickAnimation)
             calculator.setValue(1)
             break;
         case 'Numpad2':
