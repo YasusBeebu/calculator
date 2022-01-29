@@ -232,7 +232,7 @@ window.addEventListener('keydown', function (event) {
             break;
         case 'NumpadEnter':
         case 'Enter':
-            keyAnimation('.equal')
+            keyAnimation('.equals')
             calculator.math('=')
             break;
         case 'Backspace':
