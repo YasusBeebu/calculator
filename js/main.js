@@ -67,12 +67,15 @@ const calculator = {
     },
 
     setValue: function (val) {
-        this.mathAllow = true;
-        if (this.showResult) { // if value on the display is temp erase it
-            this.displayValue.innerText = ''
+        if(calculator.displayValue.innerText.length < 13){
+            this.mathAllow = true;
+            if (this.showResult) { // if value on the display is temp erase it
+                this.displayValue.innerText = ''
+            }
+            this.showResult = false
+            this.displayValue.innerText += val; 
         }
-        this.showResult = false
-        this.displayValue.innerText += val;
+       
     },
 
     clear: function () {
@@ -152,7 +155,7 @@ getElement('.clearButton').addEventListener('click', () => (calculator.clear()))
 getElement('.deleteButton').addEventListener('click', () => (calculator.delete()))
 
 //Key Bindings
-function keyAnimation(element_class) {// keyboard press animations
+function keyAnimation(element_class) { // keyboard press animations
     getElement(element_class).classList.add('pressTheButton');
     setTimeout(() => (getElement(element_class).classList.remove('pressTheButton')), 150);
 }
