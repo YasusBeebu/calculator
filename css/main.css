@@ -68,6 +68,7 @@ body {
 
 
 .removeButton {
+    right:0.1vh;
     min-width:32vh !important;
 }
 .mathButtons {
@@ -95,7 +96,7 @@ body {
 
 .button p {
     display: flex;
-    background: linear-gradient(349deg, #2D2D2D, #3D3D3D);
+    background: linear-gradient(59deg, #2D2D2D, #3D3D3D);
     min-width: 15vh;
     height: 9vh;
     align-items: center;
